@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>مهیمن علیزاده | طراح و برنامه‌نویس ارشد وب و اپلیکیشن موبایل</title>
+    <meta
+      name="description"
+      content="فریلنسر برنامه‌نویسی فول‌استک وب و موبایل. طراحی و توسعه وب‌سایت‌های اختصاصی، سامانه‌های تحت وب و اپلیکیشن‌های هوشمند با React, Next.js, Django و React Native."
+    />
+    <meta
+      name="keywords"
+      content="برنامه‌نویس وب, طراح سایت, برنامه‌نویس فول‌استک, برنامه‌نویس فرانت‌اند, برنامه‌نویس بک‌اند, برنامه‌نویس موبایل, برنامه‌نویس ریکت, فریلنسر پونیشا"
+    />
+
+    <!-- گوگل فونت وزیرمتن (Vazirmatn) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --forest: #0e4a37;
+        --forest-2: #0a3829;
+        --leaf: #1f8a5f;
+        --mint: #e4f1ea;
+        --mint-2: #cfe6db;
+        --paper: #ffffff;
+        --ink: #12201a;
+        --muted: #55665d;
+        --line: #d9e6de;
+        --font: "Vazirmatn", -apple-system, BlinkMacSystemFont, Tahoma,
+          sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font);
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.8;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      :focus-visible {
+        outline: 3px solid var(--leaf);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--font);
+        line-height: 1.2;
+        letter-spacing: 0;
+      }
+      section {
+        padding: 96px 0;
+      }
+
+      /* NAV */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+      }
+      .logo {
+        font-weight: 800;
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .logo i {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px 10px 2px 10px;
+        background: var(--forest);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-style: normal;
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+      nav ul {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+      nav a:hover {
+        color: var(--leaf);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 26px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        border: 2px solid var(--forest);
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+      .btn-solid {
+        background: var(--forest);
+        color: #fff;
+      }
+      .btn-solid:hover {
+        background: var(--forest-2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px -6px rgba(14, 74, 55, 0.4);
+      }
+      .btn-line {
+        color: var(--forest);
+      }
+      .btn-line:hover {
+        background: var(--forest);
+        color: #fff;
+      }
+      .menu-btn {
+        display: none;
+        background: none;
+        border: 0;
+        font-size: 1.7rem;
+        cursor: pointer;
+        color: var(--forest);
+      }
+
+      /* HERO */
+      .hero {
+        padding: 64px 0 60px;
+        background: linear-gradient(180deg, var(--mint) 0%, #fff 100%);
+        overflow: hidden;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #fff;
+        border: 1px solid var(--mint-2);
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 26px;
+        color: var(--forest-2);
+      }
+      .status b {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #2bb673;
+        box-shadow: 0 0 0 4px rgba(43, 182, 115, 0.2);
+      }
+      .hero h1 {
+        font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+        font-weight: 900;
+        color: var(--forest-2);
+        line-height: 1.3;
+        text-align: start;
+      }
+      .hero p.lead {
+        margin: 22px 0 34px;
+        font-size: 1.1rem;
+        color: var(--muted);
+        max-width: 580px;
+        text-align: start;
+      }
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 38px;
+        text-align: start;
+      }
+      .hero-contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 22px;
+        font-size: 0.95rem;
+        color: var(--muted);
+        text-align: start;
+      }
+      .hero-contact a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        direction: ltr;
+        text-align: start;
+      }
+      .hero-contact a:hover {
+        color: var(--forest);
+        text-align: start;
+      }
+      .hero-contact svg {
+        width: 18px;
+        height: 18px;
+        fill: var(--forest);
+        text-align: start;
+      }
+
+      .portrait {
+        position: relative;
+        max-width: 460px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .photo {
+        position: relative;
+        aspect-ratio: 4/5;
+        border-radius: 52% 48% 14px 14px / 34% 34% 14px 14px;
+        overflow: hidden;
+        background: var(--forest);
+        box-shadow: 0 30px 60px -25px rgba(10, 56, 41, 0.55);
+      }
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .photo .ph {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 4rem;
+        font-weight: 800;
+        z-index: -1;
+      }
+      .portrait::before {
+        content: "";
+        position: absolute;
+        inset: -18px -18px 24px 24px;
+        border: 2px solid var(--leaf);
+        border-radius: 52% 48% 14px 14px / 34% 34% 14px 14px;
+        z-index: -1;
+        opacity: 0.5;
+      }
+      .cloud {
+        position: absolute;
+        background: #fff;
+        border: 1px solid var(--mint-2);
+        padding: 10px 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--forest-2);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: 40% 60% 45% 55% / 60% 55% 45% 40%;
+        box-shadow: 0 14px 30px -12px rgba(10, 56, 41, 0.25);
+        animation: float 6s ease-in-out infinite;
+        white-space: nowrap;
+      }
+      .cloud svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--leaf);
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex: none;
+      }
+      .c1 {
+        top: 6%;
+        right: -10%;
+      }
+      .c2 {
+        top: 32%;
+        left: -8%;
+        animation-delay: -1.5s;
+      }
+      .c3 {
+        bottom: 26%;
+        right: -12%;
+        animation-delay: -3s;
+      }
+      .c4 {
+        bottom: 6%;
+        left: -4%;
+        animation-delay: -4.5s;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      /* TESTIMONIALS SLIDER SECTION */
+      .testimonials-section {
+        background: #f7faf8;
+        padding: 50px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .slider-container {
+        position: relative;
+        max-width: 850px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      .slider-wrapper {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        direction: rtl;
+      }
+      .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+        padding: 10px 15px;
+      }
+      .review-card {
+        background: #fff;
+        border: 1px solid var(--mint-2);
+        border-radius: 20px;
+        padding: 32px;
+        box-shadow: 0 10px 25px -5px rgba(14, 74, 55, 0.06);
+        position: relative;
+      }
+      .review-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+      .avatar-icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: var(--mint);
+        display: grid;
+        place-items: center;
+        flex-none: none;
+      }
+      .avatar-icon svg {
+        width: 28px;
+        height: 28px;
+        fill: var(--forest);
+      }
+      .user-info h4 {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--forest-2);
+        margin-bottom: 2px;
+      }
+      .user-info span {
+        font-size: 0.85rem;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .stars {
+        color: #ffc107;
+        font-size: 1.1rem;
+        margin-right: auto;
+      }
+      .review-card p {
+        color: var(--ink);
+        font-size: 1rem;
+        line-height: 1.8;
+        text-align: justify;
+      }
+
+      .slider-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-top: 24px;
+      }
+      .nav-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid var(--line);
+        color: var(--forest);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      .nav-btn:hover {
+        background: var(--forest);
+        color: #fff;
+        border-color: var(--forest);
+      }
+      .dots {
+        display: flex;
+        gap: 8px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--mint-2);
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .dot.active {
+        background: var(--forest);
+        width: 26px;
+        border-radius: 999px;
+      }
+
+      /* STRIP */
+      .strip {
+        background: var(--forest);
+        color: #fff;
+        padding: 22px 0;
+        overflow: hidden;
+      }
+      .strip ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 40px;
+        font-weight: 600;
+        font-size: 1rem;
+      }
+      .strip li::before {
+        content: "✓";
+        color: #7fd8ab;
+        margin-left: 8px;
+        font-weight: bold;
+      }
+
+      /* SECTION HEAD */
+      .sec-head {
+        max-width: 750px;
+        margin-bottom: 52px;
+      }
+      .sec-head h2 {
+        font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+        color: var(--forest-2);
+        margin-bottom: 14px;
+        font-weight: 800;
+      }
+      .sec-head p {
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      /* ABOUT */
+      .about {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .about h2 {
+        font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+        color: var(--forest-2);
+        margin-bottom: 20px;
+        font-weight: 800;
+      }
+      .about p {
+        color: var(--muted);
+        font-size: 1.05rem;
+        margin-bottom: 16px;
+        max-width: 640px;
+        text-align: justify;
+      }
+      .facts {
+        background: var(--mint);
+        border-radius: 28px 28px 6px 28px;
+        padding: 34px;
+        border: 1px solid var(--mint-2);
+      }
+      .facts h3 {
+        font-size: 1.25rem;
+        margin-bottom: 18px;
+        color: var(--forest-2);
+        font-weight: 700;
+      }
+      .facts ul {
+        list-style: none;
+        display: grid;
+        gap: 14px;
+      }
+      .facts li {
+        padding-right: 28px;
+        position: relative;
+        font-weight: 600;
+        font-size: 0.98rem;
+        color: var(--ink);
+      }
+      .facts li::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0.5em;
+        width: 12px;
+        height: 7px;
+        border-right: 3px solid var(--leaf);
+        border-bottom: 3px solid var(--leaf);
+        transform: rotate(45deg);
+      }
+
+      /* SERVICES */
+      .services {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .svc {
+        padding: 30px 24px;
+        border: 1px solid var(--line);
+        border-radius: 22px 22px 6px 22px;
+        background: #fff;
+        transition: all 0.2s ease;
+      }
+      .svc:hover {
+        border-color: var(--leaf);
+        background: var(--mint);
+        transform: translateY(-4px);
+      }
+      .svc .ic {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px 16px 4px 16px;
+        background: var(--mint);
+        display: grid;
+        place-items: center;
+        margin-bottom: 20px;
+      }
+      .svc:hover .ic {
+        background: #fff;
+      }
+      .svc .ic svg {
+        width: 26px;
+        height: 26px;
+        stroke: var(--forest);
+        fill: none;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .svc h3 {
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+        color: var(--forest-2);
+        font-weight: 700;
+      }
+      .svc p {
+        font-size: 0.93rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* STACK */
+      .stack {
+        background: var(--mint);
+      }
+      .stack-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+      .group {
+        background: #fff;
+        border-radius: 24px;
+        padding: 30px;
+        border: 1px solid var(--mint-2);
+      }
+      .group h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        color: var(--forest-2);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 800;
+      }
+      .group h3 span {
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .chip {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px 8px 12px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        background: #fff;
+        transition: border-color 0.2s;
+      }
+      .chip:hover {
+        border-color: var(--leaf);
+      }
+      .chip img,
+      .chip .glyph {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+      .chip .glyph {
+        display: grid;
+        place-items: center;
+        background: var(--forest);
+        color: #fff;
+        border-radius: 6px;
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+
+      /* PROCESS */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0;
+        counter-reset: s;
+        position: relative;
+      }
+      .step {
+        padding: 0 0 0 16px;
+        position: relative;
+      }
+      .step::before {
+        counter-increment: s;
+        content: counter(s);
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: var(--forest);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+      .step::after {
+        content: "";
+        position: absolute;
+        top: 23px;
+        right: 46px;
+        left: 0;
+        height: 2px;
+        background: var(--mint-2);
+      }
+      .step:last-child::after {
+        display: none;
+      }
+      .step h3 {
+        font-size: 1.05rem;
+        margin-bottom: 8px;
+        color: var(--forest-2);
+        font-weight: 700;
+      }
+      .step p {
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+
+      /* WORK */
+      .work {
+        background: var(--forest-2);
+        color: #fff;
+      }
+      .work .sec-head h2 {
+        color: #fff;
+      }
+      .work .sec-head p {
+        color: #a9c9ba;
+      }
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .proj {
+        background: #0f4533;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid #1d5e46;
+        transition: transform 0.2s ease;
+      }
+      .proj:hover {
+        transform: translateY(-5px);
+      }
+      .proj .shot {
+        aspect-ratio: 16/10;
+        background: #124f3a;
+        display: grid;
+        place-items: center;
+        color: #7fd8ab;
+        font-weight: 600;
+        font-size: 1rem;
+        border-bottom: 1px solid #1d5e46;
+      }
+      .proj .shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .proj .body {
+        padding: 24px;
+      }
+      .proj h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+      .proj p {
+        color: #a9c9ba;
+        font-size: 0.92rem;
+        margin-bottom: 16px;
+        line-height: 1.6;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tags span {
+        font-size: 0.78rem;
+        padding: 4px 12px;
+        border-radius: 999px;
+        background: #1a5a43;
+        color: #cfe6db;
+        font-weight: 500;
+        direction: ltr;
+      }
+
+      /* WHY */
+      .why {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .why ul {
+        list-style: none;
+        display: grid;
+        gap: 20px;
+      }
+      .why li {
+        display: flex;
+        gap: 16px;
+      }
+      .why li svg {
+        flex: none;
+        width: 26px;
+        height: 26px;
+        stroke: var(--leaf);
+        fill: none;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        margin-top: 2px;
+      }
+      .why li h3 {
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+        color: var(--forest-2);
+        font-weight: 700;
+      }
+      .why li p {
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+
+      /* CONTACT */
+      .contact {
+        padding-top: 0;
+      }
+      .box {
+        background: var(--mint);
+        border-radius: 36px;
+        padding: 60px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+      }
+      .box h2 {
+        font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+        color: var(--forest-2);
+        margin-bottom: 16px;
+        font-weight: 800;
+      }
+      .box p {
+        color: var(--muted);
+        margin-bottom: 26px;
+        font-size: 1.05rem;
+      }
+      .list {
+        display: grid;
+        gap: 12px;
+      }
+      .list a {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: #fff;
+        padding: 16px 20px;
+        border-radius: 16px;
+        border: 1px solid var(--mint-2);
+        transition: all 0.2s ease;
+      }
+      .list a:hover {
+        border-color: var(--leaf);
+        transform: translateX(-6px);
+      }
+      .list svg {
+        width: 22px;
+        height: 22px;
+        fill: var(--forest);
+        flex: none;
+      }
+      .list small {
+        display: block;
+        color: var(--muted);
+        font-size: 0.8rem;
+        margin-bottom: 2px;
+      }
+      .list b {
+        font-weight: 700;
+        word-break: break-all;
+        direction: ltr;
+        text-align: right;
+      }
+
+      footer {
+        padding: 30px 0 40px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        border-top: 1px solid var(--line);
+      }
+      footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1020px) {
+        .services {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .steps {
+          grid-template-columns: 1fr 1fr;
+          gap: 34px;
+        }
+        .step::after {
+          display: none;
+        }
+        .projects {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 860px) {
+        section {
+          padding: 60px 0;
+        }
+        .hero-grid,
+        .why,
+        .box,
+        .stack-grid,
+        .about {
+          grid-template-columns: 1fr;
+        }
+        .box {
+          padding: 32px 20px;
+        }
+        .portrait {
+          max-width: 360px;
+          margin-top: 20px;
+        }
+        .c1 {
+          right: -2%;
+        }
+        .c3 {
+          right: -4%;
+        }
+        .c2 {
+          left: -2%;
+        }
+        .c4 {
+          left: 0%;
+        }
+        nav {
+          position: absolute;
+          top: 72px;
+          left: 0;
+          right: 0;
+          background: #fff;
+          border-bottom: 1px solid var(--line);
+          display: none;
+        }
+        nav.open {
+          display: block;
+        }
+        nav ul {
+          flex-direction: column;
+          gap: 0;
+          padding: 10px 24px 20px;
+        }
+        nav li a {
+          display: block;
+          padding: 12px 0;
+          border-bottom: 1px solid var(--mint);
+        }
+        .menu-btn {
+          display: block;
+        }
+        .nav > .btn {
+          display: none;
+        }
+      }
+      @media (max-width: 560px) {
+        .services,
+        .projects,
+        .steps {
+          grid-template-columns: 1fr;
+        }
+        .cloud {
+          font-size: 0.8rem;
+          padding: 8px 14px;
+        }
+        .review-header {
+          flex-wrap: wrap;
+        }
+        .stars {
+          margin-right: 0;
+          width: 100%;
+          margin-top: 4px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .cloud {
+          animation: none;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <a href="#top" class="logo"><i>MA</i> مهیمن علیزاده</a>
+        <nav id="menu" aria-label="Main">
+          <ul>
+            <li><a href="#about">درباره من</a></li>
+            <li><a href="#services">خدمات تخصصی</a></li>
+            <li><a href="#stack">تکنولوژی‌ها</a></li>
+            <li><a href="#process">روند انجام کار</a></li>
+            <li><a href="#work">نمونه‌کارها</a></li>
+            <li><a href="#contact">ارتباط با من</a></li>
+          </ul>
+        </nav>
+        <a href="#contact" class="btn btn-solid">ثبت سفارش / همکاری</a>
+        <button
+          class="menu-btn"
+          aria-label="Open menu"
+          onclick="document.getElementById('menu').classList.toggle('open')"
+        >
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <div class="status"><b></b> آماده پذیرش پروژه‌های جدید شما</div>
+            <h1>سلام، مهیمن هستم؛ طراح و برنامه‌نویس وب و اپلیکیشن.</h1>
+            <p class="lead">
+              توسعه‌دهنده فول‌استک (Full-Stack). از یک لندینگ‌پیج ساده تا
+              سامانه‌های پیچیده وب و اپلیکیشن موبایل، صفر تا صد طراحی UI/UX،
+              بک‌اند، دیتابیس و اجرا را خودم انجام می‌دهم؛ یعنی ارتباط مستقیم با
+              یک متخصص بدون واسطه و اتلاف وقت.
+              و سایت شما را واکنش‌گرا و ریپسانسیو در تمام گوشی ها و تبلت و موبایل و ... تحویل میدهیم با بهترین کیفیت
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-solid" href="#contact">شروع پروژه شما</a>
+              <a class="btn btn-line" href="#work">مشاهده نمونه‌کارها</a>
+            </div>
+            <div class="hero-contact">
+              <a href="mailto:mohaymenalizadeh@gmail.com"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8L4.5 7.5v1.2L12 14l7.5-5.3V7.5L12 13Z"
+                  /></svg
+                >mohaymenalizadeh@gmail.com</a
+              >
+              <a href="tel:۰۹۱۱۵۲۹۹۷۳۹"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.250.2 2.450.6 3.600a1 1 0 0 1-.25 1Z"
+                  /></svg
+                >۰۹۱۱۵۲۹۹۷۳۹</a
+              >
+            </div>
+          </div>
+
+          <div class="portrait">
+            <div class="photo">
+              <div class="ph">MA</div>
+              <img
+                src="./7d20e0ee-7c6b-4930-89b2-4d1084fbb1ef.webp"
+                alt="مهیمن علیزاده، برنامه‌نویس فول‌استک"
+                onerror="this.style.display='none'"
+              />
+            </div>
+            <div class="cloud c1">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="14" rx="2" />
+                <path d="M8 21h8M12 18v3" /></svg
+              >طراح وب (UI/UX)
+            </div>
+            <div class="cloud c2">
+              <svg viewBox="0 0 24 24">
+                <path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14" /></svg
+              >برنامه‌نویس وب
+            </div>
+            <div class="cloud c3">
+              <svg viewBox="0 0 24 24">
+                <rect x="7" y="2" width="10" height="20" rx="2" />
+                <path d="M11 18h2" /></svg
+              >برنامه‌نویس موبایل
+            </div>
+            <div class="cloud c4">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3 3 8l9 5 9-5-9-5ZM3 13l9 5 9-5" /></svg
+              >طراح اپلیکیشن
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS SLIDER SECTION (اول صفحه - بلافاصله بعد از بنر) -->
+      <section class="testimonials-section">
+        <div class="wrap">
+          <div class="sec-head" style="text-align: center; margin: 0 auto 36px">
+            <h2>نظر کارفرمایان قبلی درباره کیفیت کار من</h2>
+            <p>
+              تجربه واقعی همکاری کارفرمایانی که پروژه‌های خود را به من سپردند.
+            </p>
+          </div>
+
+          <div class="slider-container">
+            <div class="slider-wrapper" id="sliderWrapper">
+              <!-- کامنت ۱: پرده‌سرا -->
+              <div class="slide">
+                <div class="review-card">
+                  <div class="review-header">
+                    <div class="avatar-icon">
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="user-info">
+                      <h4>جناب آقای حسینی</h4>
+                      <span>مدیریت فروشگاه و گالری پرده‌سرا</span>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                  <p>
+                    «من سایت پرده‌سرای خودم رو سپردم دست آقا مهیمن. واقعاً
+                    فوق‌العاده انجام داد! هم کاتالوگ پارچه‌ها رو دقیق چید، هم
+                    محاسبه‌گر متراژ برامون گذاشت. سرعت سایت عالیه و مشتریامون
+                    خیلی راحت سفارش میدن. منظم، متعهد و کاربلد.»
+                  </p>
+                </div>
+              </div>
+
+              <!-- کامنت ۲: فروشگاه پوشاک -->
+              <div class="slide">
+                <div class="review-card">
+                  <div class="review-header">
+                    <div class="avatar-icon">
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="user-info">
+                      <h4>مریم شریفی</h4>
+                      <span>بنیان‌گذار آنلاین‌شاپ پوشاک برند</span>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                  <p>
+                    «پروژه طراحی آنلاین‌شاپ ما قرار بود خیلی سریع بالا بیاد.
+                    مهیمن جان با صبر و حوصله تمام ویژگی‌هایی که مد نظرمون بود رو
+                    روی قالب اختصاصی اجرا کرد. اتصال به درگاه پرداخت و پنل
+                    پیامکی بدون هیچ مشکلی انجام شد. حتما پروژه‌های بعدی هم با
+                    ایشون کار می‌کنیم.»
+                  </p>
+                </div>
+              </div>
+
+              <!-- کامنت ۳: شرکت خدماتی -->
+              <div class="slide">
+                <div class="review-card">
+                  <div class="review-header">
+                    <div class="avatar-icon">
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="user-info">
+                      <h4>مهندس کریمی</h4>
+                      <span>مدیرعامل شرکت خدمات بازرگانی</span>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                  <p>
+                    «مهم‌ترین فاکتور برای ما در پروژه شرکتی، تحویل به‌موقع و
+                    کدنویسی تمیز بود. ایشون بسیار حرفه‌ای عمل کردن و پشتیبانی
+                    فوق‌العاده‌ای بعد از تحویل سایت داشتن. هر تغییری که خواستیم
+                    رو دقیق و طبق تایم‌لاین اعمال کردن.»
+                  </p>
+                </div>
+              </div>
+
+              <!-- کامنت ۴: سامانه رزرو آنلاین -->
+              <div class="slide">
+                <div class="review-card">
+                  <div class="review-header">
+                    <div class="avatar-icon">
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="user-info">
+                      <h4>دکتر رضا صادقی</h4>
+                      <span>مدیر سامانه نوبت‌دهی و رزرو آنلاین</span>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                  <p>
+                    «طراحی وب‌اپلیکیشن رزرو ما پیچیدگی‌های زیادی داشت. مهیمن با
+                    تکنولوژی React و Django کاری تحویل داد که هم سرعت بسیار
+                    بالایی داره و هم کار با پنل مدیریتش برای پرسنل ما بسیار ساده
+                    و آموزنده هست.»
+                  </p>
+                </div>
+              </div>
+
+              <!-- کامنت ۵: اپلیکیشن موبایل -->
+              <div class="slide">
+                <div class="review-card">
+                  <div class="review-header">
+                    <div class="avatar-icon">
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="user-info">
+                      <h4>علیرضا ابراهیمی</h4>
+                      <span>استارتاپ خدماتی موبایل</span>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                  <p>
+                    «توسعه اپلیکیشن اندروید و iOS مجموعه‌مون رو با React Native
+                    برامون زدند. واقعا تجربه عالی بود؛ صفر تا صد رو خودشون هندل
+                    کردن و خروجی کار بدون کوچک‌ترین باگی روی استورها منتشر شد.»
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- کنترل‌های اسلایدر -->
+            <div class="slider-controls">
+              <button class="nav-btn" onclick="prevSlide()" aria-label="قبلی">
+                ❮
+              </button>
+              <div class="dots" id="dotsContainer"></div>
+              <button class="nav-btn" onclick="nextSlide()" aria-label="بعدی">
+                ❯
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="strip">
+        <ul class="wrap">
+          <li>طراحی تمیز و مدرن</li>
+          <li>تحویل سریع و آن‌تایم</li>
+          <li>کدنویسی مقیاس‌پذیر</li>
+          <li>بهینه برای گوگل (SEO)</li>
+          <li>کاملاً واکنش‌گرا (موبایل)</li>
+        </ul>
+      </div>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="wrap about">
+          <div>
+            <h2>درباره من</h2>
+            <p>
+              من فریلنسر برنامه‌نویسی فول‌استک هستم. کار من تبدیل ایده‌های شما
+              به پروژه‌های واقعی، مدرن و استاندارد است؛ از وب‌سایت‌های معرفی و
+              فروشگاهی گرفته تا نرم‌افزارهای پیچیده تحت وب و اپلیکیشن‌های
+              کاربردی موبایل.
+            </p>
+            <p>
+              مزیت همکاری با من این است که تمام مراحل پروژه شامل طراحی رابط
+              کاربری (UI/UX)، برنامه‌نویسی فرانت‌اند، بک‌اند، دیتابیس و
+              راه‌اندازی روی سرور را خودم مدیریت و اجرا می‌کنم. این یعنی ارتباط
+              مستقیم، سرعت بالا و عدم ناهماهنگی بین تیم‌های مختلف.
+            </p>
+            <p>
+              خروجی کار من کدی تمیز، ایمن، با سرعت بارگذاری فوق‌العاده و کاملاً
+              سئو شده است تا کسب‌وکار شما بتواند بدون مشکل رشد کند.
+            </p>
+          </div>
+          <div class="facts">
+            <h3>تخصص‌ها و خدمات من</h3>
+            <ul>
+              <li>طراحی و برنامه‌نویسی اختصاصی وب‌سایت</li>
+              <li>توسعه سامانه‌های وب، پنل‌های مدیریت و SaaS</li>
+              <li>توسعه اپلیکیشن‌های موبایل (Android و iOS)</li>
+              <li>طراحی وب‌سرویس و REST API اختصاصی</li>
+              <li>بهینه‌سازی سرعت، امنیت و سئوی فنی سایت</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2>یک متخصص مجرب برای کل پروژه شما</h2>
+            <p>
+              توسعه وب‌سایت، پروژه‌های تحت وب و اپلیکیشن موبایل در هر ابعادی.
+              ظاهر کاربرپسند طراحی می‌کنم، برنامه‌نویسی سمت کاربر و سرور را
+              انجام می‌دهم و پروژه را آماده کار به شما تحویل می‌دهم.
+            </p>
+          </div>
+          <div class="services">
+            <article class="svc">
+              <div class="ic">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="14" rx="2" />
+                  <path d="M3 9h18M8 21h8M12 18v3" />
+                </svg>
+              </div>
+              <h3>طراحی و برنامه‌نویسی وب‌سایت اختصاصی</h3>
+              <p>
+                طراحی مدرن، دست‌نویس و کاملاً متناسب با هویت برند شما بدون
+                استفاده از قالب‌های آماده و سنگین.
+              </p>
+            </article>
+            <article class="svc">
+              <div class="ic">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="8" height="8" rx="1.5" />
+                  <rect x="13" y="3" width="8" height="5" rx="1.5" />
+                  <rect x="13" y="10" width="8" height="11" rx="1.5" />
+                  <rect x="3" y="13" width="8" height="8" rx="1.5" />
+                </svg>
+              </div>
+              <h3>توسعه وب‌اپلیکیشن و سامانه‌ها</h3>
+              <p>
+                توسعه داشبوردهای مدیریتی، سیستم‌های CRM، نرم‌افزارهای SaaS و
+                پنل‌های اختصاصی با امنیت بالا.
+              </p>
+            </article>
+            <article class="svc">
+              <div class="ic">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6 6h15l-1.500 9H7.500L6 6Zm0 0L5 3H2" />
+                  <circle cx="9" cy="20" r="1.500" />
+                  <circle cx="18" cy="20" r="1.500" />
+                </svg>
+              </div>
+              <h3>فروشگاه‌های آنلاین و فروشگاهی</h3>
+              <p>
+                فروشگاه‌های اینترنتی پرسرعت و بهینه همراه با کاتالوگ محصول، سبد
+                خرید، اتصال به درگاه پرداخت و مدیریت سفارشات.
+              </p>
+            </article>
+            <article class="svc">
+              <div class="ic">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 4h16v16H4zM4 9h16M9 9v11" />
+                </svg>
+              </div>
+              <h3>صفحات فرود (Landing Page) شرکتی</h3>
+              <p>
+                صفحات قدرتمند و هدفمند برای معرفی خدمات که در چند ثانیه پیام شما
+                را منتقل کرده و نرخ تبدیل مشتری را بالا می‌برد.
+              </p>
+            </article>
+            <article class="svc">
+              <div class="ic">
+                <svg viewBox="0 0 24 24">
+                  <rect x="7" y="2" width="10" height="20" rx="2" />
+                  <path d="M11 18h2" />
+                </svg>
+              </div>
+              <h3>توسعه اپلیکیشن موبایل</h3>
+              <p>
+                ساخت اپلیکیشن‌های سریع و حرفه‌ای برای iOS و Android با React
+                Native با تجربه کاربری کاملاً نیتیو (Native).
+              </p>
+            </article>
+            <article class="svc">
+              <div class="ic">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8 7 3 12l5 5M16 7l5 5-5 5" />
+                  <path d="M13.500 5 10.500 19" />
+                </svg>
+              </div>
+              <h3>طراحی REST API و اتصال سرویس‌ها</h3>
+              <p>
+                طراحی APIهای تمیز و استاندار و اتصال به سامانه‌های پیامکی،
+                درگاه‌های پرداخت، نقشه‌ها و نرم‌افزارهای جانبی.
+              </p>
+            </article>
+            <article class="svc">
+              <div class="ic">
+                <svg viewBox="0 0 24 24">
+                  <rect x="2" y="5" width="14" height="10" rx="1.500" />
+                  <rect x="14" y="9" width="8" height="12" rx="1.500" />
+                </svg>
+              </div>
+              <h3>طراحی واکنش‌گرا و بازطراحی سایت</h3>
+              <p>
+                نمایش بی‌نقص روی تمام گوشی‌ها، تبلت‌ها و دسکتاپ یا بازطراحی
+                (Redesign) سایت‌های قدیمی و غیرحرفه‌ای.
+              </p>
+            </article>
+            <article class="svc">
+              <div class="ic">
+                <svg viewBox="0 0 24 24">
+                  <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />
+                </svg>
+              </div>
+              <h3>بهینه‌سازی سرعت و سئوی فنی</h3>
+              <p>
+                افزایش سرعت بارگذاری، بهبود معیارهای Core Web Vitals و کدنویسی
+                استاندارد برای رتبه بهتر در گوگل.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- STACK -->
+      <section id="stack" class="stack">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2>تکنولوژی‌ها و ابزارهای مورد استفاده</h2>
+            <p>
+              زبان‌ها، فریم‌ورک‌ها و پایگاه‌های داده‌ای که روزانه برای توسعه
+              محصولات کامل و استاندارد استفاده می‌کنم.
+            </p>
+          </div>
+          <div class="stack-grid">
+            <div class="group">
+              <h3>فرانت‌اند (Frontend) <span>بخش بصری سایت</span></h3>
+              <div class="chips">
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjRTQ0RDI2IiBkPSJNMTkuMDM3IDExMy44NzZMOS4wMzIgMS42NjFoMTA5LjkzNmwtMTAuMDE2IDExMi4xOTgtNDUuMDE5IDE2LjQ4eiIvPjxwYXRoIGZpbGw9IiNGMTY1MjkiIGQ9Ik02NCAxMTYuOGwzNi4zNzgtMTAuMDg2IDguNTU5LTk1Ljg3OEg2NHoiLz48cGF0aCBmaWxsPSIjRUJFQkVCIiBkPSJNNjQgNTIuNDU1SDQ1Ljc4OEw0NC41MyAzOC4zNhFINjRWMjQuNTk5SDI5LjQ4OWwuMzMgMy42OTIgMy4zODIgMzcuOTI3SDY0em0wIDM1Ljc0M3wtLjA2MS4wMTctMTUuMzI3LTQuMTQtLjk3OS0xMC45NzVIMzMuODE2bDEuOTI4IDIxLjYwOSAyOC4xOTMgNy44MjYuMDYzLS4wMTd6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTYz.91MiA1Mi40NTV2MTMuNzYzaDE2Ljk0N2wtMS41OTcgMTcuODQ5LTE1LjM1IDQuMTQzdjE0LjMxOWwyOC4yMTUtNy44Mi4yMDctMi4zMjUgMy4yMzQtMzYuMjMzLjMzNS0zLjY5NmgtMy43MDh6bTAtMjcuODU2djEzLjc2MmgzMy4yNDRsLjI3Ni0zLjA5Mi42MjgtNi45NzguMzI5LTMuNjkyeiIvPjwvc3ZnPg=="
+                    alt=""
+                  />HTML5
+                </div>
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMTU3MkI2IiBkPSJNMTguODE0IDExNC4xMjNMOC43NiAxLjM1MmgxMTAuNDhsLTEwLjA2NCAxMTIuNzU0LTQ1LjI0MyAxMi41NDMtNDUuMTE5LTEyLjUyNnoiLz48cGF0aCBmaWxsPSIjMzNBOURDIiBkPSJNNjQuMDAxIDExNy4wNjJsMzYuNTU5LTEwLjEzNiA4LjYwMS05Ni4zNTRoLTQ1LjE2djEwNi40OXoiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNNjQuMDAxIDUxLjQyOWgxOC4zMDJsMS4yNhQtMTQuMTYzSDY0LjAwMVYyMy40MzVoMzQuNjgybC0uMzMyIDMuNzExLTMuNCAzOC4xMTRoLTMwLjk1VjUxLjQyOXoiLz48cGF0aCBmaWxsPSIjRUJFQkVCIiBkPSJNNjQuMDgzIDg3LjM0OWwtLjA2MS4wMTgtMTUuNDA3LTQuMTU5LS45ODUtMTEuMDMxSDMzLjc1MmwxLjkzNyAyMS43MTcgMjguMzMxIDcuODYzLjA2My0uMDE4di0xNC4zOXoiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNODEuMTI3IDY0LjY3NWwtMS42NjYgMTguNTIyLTE1LjQyNiA0LjE2NHYxNC4zOWwyOC4zNTQtNy44NTguMjA4LTIuMzM3IDIuNDA2LTI2Ljg4MUg4MS4xMjd6Ii8+PHBhdGggZmlsbD0iI0VCRUJFQiIgZD0iTTY0LjA0OCAyMy40MzV2MTMuODMxSDMwLjY0bC0uMjc3LTMuMTA4LS42My03LjAxMi0uMzMxLTMuNzExaDM0LjY0NnptLS4wNDcgMjcuOTk2djEzLjgzMUg0OC43OTJsLS4yNzctMy4xMDgtLjYzMS03LjAxMi0uMzMtMy43MVo2NC4wNDh6Ii8+PC9zdmc+"
+                    alt=""
+                  />CSS3
+                </div>
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjRjBEQjRGIiBkPSJNMS40MDggMS40MDhoMTI1LjE4NHYxMjUuMTg1SDEuNDA4eiIvPjxwYXRoIGZpbGw9IiMzMjMzMzAiIGQ9Ik0xMTYuMzQ3IDk2LjczNmMtLjkxNy01LjcxMS04LjY0MS0xMC41MDgtMTUuNC21yLTE4Ljk4MS0zLjgzMi0xLjc2MS04LjEwNC0zLjAyMi05LjM3Ny01LjkyNi0uNDUyLTEuNjktLjUxMi0yLjY0Mi0uMjI2LTMuNjY1LjgyMS0zLjMyIDQuNzg0LTQuMzU1IDcuOTI1LTMuNDA3IDIuMDIzLjY3OCAzLjkzOCAyLjIzNyA1LjA5MyA0Ljc2NCA1LjQwMi0zLjQ5OCA1LjM5MS0zLjQ3NSA5LjE2My01Ljg3OS0xLjM4MS0yLjE0MS0yLjExOC0zLjEyOS0zLjAyMi00LjA0NS0zLjI0OS0zLjYyOS03LjY3Ni01LjQ5OC0xNC43NTYtNS4zNTVsLTMuNjg4LjQ3N2MtMy41MzQuODkzLTYuOTAyIDIuNzQ4LTguODc3IDUuMjM1LTUuOTI2IDYuNzI0LTQuMjM2IDE4LjQ5MiAyLjk3NSAyMy4zMzUgNy4xMDQgNS4zMzIgMTcuNTQgNi41NDUgMTguODczIDExLjUzMSAxLjI5NyA2LjEwNC00LjQ4NiA4LjA4LTEwLjIzNCA3LjM3OC00LjIzNi0uODgxLTYuNTkyLTMuMDM0LTkuMTM5LTYuOTQ5LTQuNjg4IDIuNzE3LTQuNjg4IDIuNzE3LTkuNTA4IDUuNDg1IDEuMTQzIDIuNDk5IDIuMzg4IDMuNkMgNC42NiA1Ljc5NSA5LjA2OCA5LjE5OCAzMS43NiA4Ljc0NiAzNS44My01LjE3Ni4xNjUtLjQ3OCAxLjI2MS0zLjY2Ni4zOC04LjU4MXpNNjkuNDYyIDU4Ljk0M0g1Ny43NTNsLS4wNDggMzAuMjcyYzAgNi40MzguMzMzIDEyLjM0LS43MTQgMTQuMTQ5LTEuNzIzIDMuNTU4LTYuMTUyIDMuMTE3LTguMTc1IDIuNDI3LTIuMDU5LTEuMDE2LTMuMTA2LTIuNDUxLTQuMDE5LTQuNDg1LS4zMzMtLjU4NC0uNTgzLTEuMDM2LS42NjctMS4wNzFsLTkuNTIgNS44M2MxLjU4MyAzLjI0OSAzLjkxNSA2LjA2OSA2Ljc0MiA3LjgwMSA0LjQ2MiAyLjY3OCAxMC40NTkgMy40OTkgMTYuNzMxIDIuMDU5IDQuMDgyLTEuNTg5IDcuNjA0LTMuNjUyIDkuNDQ4LTcuNDAxIDIuNjY2LTQuOTE1IDIuMDkxLTExLjg2NCAyLjA3LTE3LjQ0NC4wNi0xMC43MzUuMDAxLTIxLjQ2OC4wMDEtMzIuMjM3eiIvPjwvc3ZnPg=="
+                    alt=""
+                  />JavaScript
+                </div>
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48ZyBmaWxsPSIjNjFEQUZCIj48Y2lyY2xlIGN4PSI2NCIgY3k9IjY0IiByPSIxMS40Ii8+PHBhdGggZD0iTTEwNy4zIDQ1LjJjLTIuMi0uOC00LjUtMS42LTYuOS0yLjMuNi0yLjQgMS4xLTQuOCAxLjUtNy4xIDIuMS0xMy4yLS4yLTIyLjUtNi42LTI2LjEtMS45LTEuMS00LTEuNi02LjQtMS42LTcgMC0xNS45IDUuMi0yNC45IDEzLjktOS04LjctMTcuOS0xMy45LTI0LjktMTMuOS0yLjQgMC00LjUuNS02LjQgMS42LTYuNCAzLjctOC43IDEzLTYuNiAyNi4xLjQgMi4zLjkgNC43IDEuNSA3LjEtMi40LjctNC43IDEuNC02LjkgMi4zQzguMiA1MCAxLjQgNTYuNiAxLjQgNjRzNi45IDE0IDE5LjMgMTguOC4yLjggNC41MS42IDYuOSAyLjMtLjYgMi40LTEuMSA0Ljh2MS41IDcuMS0yLjEgMTMuMi4yIDIyLjUgNi42IDI2LjEgMS45IDEuMSA0IDEuNiA2LjQgMS42IDcgMCAxNi01LjIgMjQuOS0xMy45IDkgOC43IDE3LjkgMTMuOSAyNC45IDE3LjkgMi40IDAgNC41LS41IDYuNC0xLjYgNi40LTMuNyA4LjctMTMgNi42LTI2LjEtLjQtMi4zLS45LTQuNy0xLjUtNy4xIDIuNC0uNyA0LjctMS40IDYuOS0yLjMgMTIuNS00Ljg0IDE5LjMtMTEuNCAxOS4zLTE4LjhzLTYuOC0xNC0xOS4zLTE4LjhzTTUyLjUgMTQuN2M0LjEgMi40IDUuNSA5LjggMy44IDIwLjMtLjMgMi4xLS44IDQuMy0xLjQgNi42LTUuMi0xLjItMTAuNy0yLTE2LjUtMi41LTMuNC00LjgtNi45LTkuMS0xMC40LTEzIDcuNC03LjMgMTQuOS0xMi4zIDIxLTEyLjMgMS4zIDAgMi41LjMgMy41Ljl6TTgxLjMgNzRjLTEuOCAzLjItMy45IDYuNC02LjEgOS42LTMuNy4zLTcuNC40LTExLjIuNC0zLjkgMC03LjYtLjEtMTEuMi0uNC0yLjItMy4yLTQuMi02LjQtNi05LjYtMS45LTMuMy0zLjctNi43LTUuMy0xMCAxLjYtNy4zIDMuNC02LjcgNS4zLTEwIDEuOC0zLjIgMy45LTYuNCA2LjEtOS42IDMuNy0uMyA3LjQtLjQgMTEuMi0uNCAzLjkgMCA3LjYuMSAxMS4yLjQgMi4yIDMuMiA0LjIgNi40IDYgOS42IDEuOSAzLjMgMy43IDYuNyA1LjMgMTAtMS43IDMuMy0zLjQgNi42LTUuMyAxMHpNOTEuMSA3MWMtMS41IDMuNS0yLjcgNi45LTMuOCAxMC4zLTMuNC44LTcgMS40LTEwLjggMS45IDEuMi0xLjkgMi41LTMuOSAzLjYtNiAxLjItMi4xIDIuMy00LjIgMy40LTYuMnpNMzEuNyAzNWMtMS43LTEwLjUtLjMtMTcuOSAzLjgtMjAuMyAxLS42IDIuMi0uOSAzLjUtLjkgNiAwIDEzLjUgNC45IDIxIDEyLjMtMy41IDMuOC03IDguMi0xMC40IDEzLTUuOC41LTExLjMgMS40LTE2LjUgMi41LS42LTIuMy0xLTQuNS0xLjQtNi42ek03IDY0YzAtNC43IDUuNy05LjcgMTUuNy0xMy40IDItLjggNC4yLTEuNSA2LjQtMi4xIDEuNiA1IDMuNiAxMC4zIDYgMTUuNi0yLjQgNS4zLTQuNSAxMC41LTYgMTUuNUMxNS4zIDc1LjYgNyA2OS42IDcgNjR6Ii8+PC9nPjwvc3ZnPg=="
+                    alt=""
+                  />React.js
+                </div>
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48Y2lyY2xlIGN4PSI2NCIgY3k9IjY0IiByPSI2NCIvPjxwYXRoIGZpbGw9InVybCgjYSkiIGQ9Ik0xMDYuMDE3IDExMi4wMTQgNDkuMTY3IDM4LjRIMzguNHY1MS4xNzloOC42MTR2LTQwLjI0bDUyLjU0IDY3Ljg4NGE2NC4yMTYgNjQuMjE2IDAgMCAwIDYuNzYzLTUuMjA5eiIvPjxwYXRoIGZpbGw9InVybCgjYikiIGQ9Ik04MS43NzggMzguNGg4LjUzM3Y1MS4yaC04LjUzM3oiLz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIxMDkiIHgyPSIxNDQuNSIgeTE9IjExNi41IiB5Mj0iMTYwLjUiIGdyYWRpZW50VHJhbnNmb3JtPSJzY2FsZSguNzExMTEpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImIiIHgxPSIxMjEiIHgyPSIxMjAuNzk5IiB5MT0iNTQiIHkyPSIxMDYuODc1IiBncmFkaWVudFRyYW5zZm9ybT0ic2NhbGUoLjcxMTExKSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPgo="
+                    alt=""
+                  />Next.js
+                </div>
+              </div>
+            </div>
+
+            <div class="group">
+              <h3>بک‌اند (Backend) <span>منطق و وب‌سرویس‌ها</span></h3>
+              <div class="chips">
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48bGluZWFyR3JhZGllbnQgaWQ9InB5dGhvbi1hIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjcwLjI1MiIgeTE9IjEyMzcuNDc2IiB4Mj0iMTcwLjY1OSIgeTI9IjExNTEuMDg5IiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KC41NjMgMCAwIC0uNTY4IC0yOS4yLTE1IDcwNy44MSkiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzVBOUZENCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzMwNjk5OCIvPjwvbGluZWFyR3JhZGllbnQ+PHBhdGggZmlsbD0idXJsKCNweXRob24tYSkiIGQ9Ik02My4zOTEgMS45ODhjLTQuMjIyLjAyLTguMjUyLjM3OS0xMS44IDEuMDA3LTEwLjQ1IDEuODQ2LTEyLjM0NiA1LjcxLTEyLjM0NiAxMi44Mzd2OS40MTFoMjQuNjkzdjMuMTM3SDI5Ljk3N2MtNy4xNzYgMC0xMy40NjogNC4zMTMtMTUuNDI2IDE2LjUyMS0yLjI2OCA5LjQwNS0yLjM2OCAxNS4yNzUgMCAyNS4wOTYgMS43NTUgNy4zMTEgNS45NDcgMTIuNTE5IDEzLjEyNCAxMi41MTloOC40OTFWNjcuMjM0YzAtOC4xNTEgNy4wNTEtMTUuMzQgMTUuNDI2LTE1LjM0aDI0LjY2NWM2Ljg2NiAwIDEyLjM0Ni01LjY1NCAxMi4zNDYtMTIuNTQ4VjE1LjgzM2MwLTYuNjk3LTUuNjQ2LTExLjc3LTEyLjM0Ni0xMi44MzctNC4yNDQtLjcwNi04LjY0NS0xLjAyNy0xMi44NjYtMS4wMDh6IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDEwLjI2KSIvPjwvc3ZnPg=="
+                    alt=""
+                  />Python
+                </div>
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjAiIHZpZXdCb3g9IjAgMCAxMjggMTI4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiMwOTJlMjAiPjxwYXRoIGQ9Ik01OS40NDggMGgyMC45M3Y5Ni44OGMtMTAuNzM3IDIuMDQtMTguNsI1NSAyLjI4NSAyNy4xODEgMi44NTUtMjUuNTUxLS4wMDEtMzguODctMTEuNTUxLTM4Ljg3LTMzLjcwNSAwLTIxLjMzOCAxNC4xMzUtMzUuMiAzNi4wMTUtMzUuMiAzLjM5OCAwIDUuOTguMjcyIDkuMTA2IDEuMDg3em0wIDQ4Ljc2NWMtMi40NDYtLjgxNS00LjQ4NS0xLjA4Ni03LjA2Ny0xLjA4Ni0xMC42IDAtMTYuNzE3IDYuNTIzLTE2LjcxNyAxNy45MzkgMCAxMS4xNDUgNS44NDUgMTcuMjYgMTYuNTgyIDE3LjI2IDIuMDkgMCA0LjIxMi0uMTM2IDcuMDItLjU0NHoiLz48L3N2Zz4="
+                    alt=""
+                  />Django
+                </div>
+                <div class="chip"><span class="glyph">{ }</span>REST API</div>
+              </div>
+            </div>
+
+            <div class="group">
+              <h3>اپلیکیشن موبایل <span>Android و iOS</span></h3>
+              <div class="chips">
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48ZyBmaWxsPSIjNjFEQUZCIj48Y2lyY2xlIGN4PSI2NCIgY3k9IjY0IiByPSIxMS40Ii8+PHBhdGggZD0iTTEwNy4zIDQ1LjJjLTIuMi0uOC00LjUtMS42LTYuOS0yLjMuNi0yLjQgMS4xLTQuOCAxLjUtNy4xIDIuMS0xMy4yLS4yLTIyLjUtNi42LTI2LjEtMS45LTEuMS00LTEuNi02LjQtMS42LTcgMC0xNS45IDUuMi0yNC45IDEzLjktOS04LjctMTcuOS0xMy45LTI0LjktMTMuOS0yLjQgMC00LjUuNS02LjQgMS42LTYuNCAzLjctOC43IDEzLTYuNiAyNi4xLjQgMi4zLjkgNC43IDEuNSA3LjEtMi40LjctNC43IDEuNC02LjkgMi4zQzguMiA1MCAxLjQgNTYuNiAxLjQgRDRzNi45IDE0IDE5LjMgMTguOC4yLjggNC41MS42IDYuOSAyLjMtLjYgMi40LTEuMSA0Ljh2MS41IDcuMS0yLjEgMTMuMi4yIDIyLjUgNi42IDI2LjEgMS45IDEuMSA0IDEuNiA2LjQgMS42IDcgMCAxNi01LjIgMjQuOS0xMy45IDkgOC43IDE3LjkgMTMuOSAyNC45IDE3LjkgMi40IDAgNC41LS41IDYuNC0xLjYgNi40LTMuNyA4LjctMTMgNi42LTI2LjEtLjQtMi4zLS45LTQuNy0xLjUtNy4xIDIuNC0uNyA0LjctMS40IDYuOS0yLjMgMTIuNS00Ljg0IDE5LjMtMTEuNCAxOS4zLTE4LjhzLTYuOC0xNC0xOS4zLTE4Ljh6TTUyLjUgMTQuN2M0LjEgMi40IDUuNSA5LjggMy44IDIwLjMtLjMgMi4xLS44IDQuMy0xLjQgNi42LTUuI001Mi41IDE0LjdjNC4xIDIuNCA1LjUgOS44IDMuOCAyMC4zLS4zIDIuMS0uOCA0LjMtMS40IDYuNi01LjItMS4yLTEwLjc3LTItMTYuNS0yLjUtMy40LTQuOC02LjktOS4xLTEwLjQtMTMgNy40LTcuMyAxNC45LTEyLjMgMjEtMTIuMyAxLjMgMCAyLjUuMyAzLjUuOXpNODEuMyA3NGMtMS44IDMuMi0zLjkgNi40LTYuMSA5LjYtMy43LjMtNy40LjQtMTEuMi40LTMuOSAwLTcuNi0uMS0xMS4yLS40LTIuMi0zLjItNC4yLTYuNC02LTkuNi0xLjktMy4zLTMuNy02LjctNS4zLTEwIDEuNi03LjMgMy40LTYuNyA1LjMtMTAgMS44LTMuMiAzLjktNi40IDYuMS05LjYgMy43LS4zIDcuNC0uNCAxMS4yLS40IDMuOSAwIDcuNi4xIDExLjIuNCAyLjIgMy4yIDQuMiA2LjQgNiA5LjYgMS45IDMuMyAzLjcgNi43IDUuMyAxMC0xLjcgMy4zLTMuNCA2LjYtNS4zIDEM3pNOTEuMSA3MWMtMS41IDMuNS0yLjcgNi45LTMuOCAxMC4zLTMuNC44LTcgMS40LTEwLjggMS45IDEuMi0xLjkgMi41LTMuOSAzLjYtNiAxLjItMi4xIDIuMy00LjIgMy40LTYuMnpNMzEuNyAzNWMtMS43LTEwLjUtLjMtMTcuOSAzLjgtMjAuMyAxLS42IDIuMi0uOSAzLjUtLjkgNiAwIDEzLjUgNC45IDIxIDEyLjMtMy41IDMuOC03IDguMi0xMC40IDEzLTUuOC41LTExLjMgMS40LTE2LjUgMi41LS42LTIuMy0xLTQuNS0xLjQtNi42ek03IDY0YzAtNC43IDUuNy05LjcgMTUuNy0xMy40IDItLjggNC4yLTEuNSA2LjQtMi4xIDEuNiA1IDMuNiAxMC4zIDYgMTUuNi0yLjQgNS4zLTQuNSAxMC41LTYgMTUuNUMxNS4zIDc1LjYgNyA2OS42IDcgNjR6Ii8+PC9nPjwvc3ZnPg=="
+                    alt=""
+                  />React Native
+                </div>
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjQTRDNDM5IiBkPSJNMjEuMDA0IDQzLjAwNWMtNC4wNTMtLjAwMi03LjMzOCAzLjI5MS03LjMzOSA3LjM0MWwuMDA1IDMwLjc3NmE3LjMzOCA3LjMzOCAwIDAwNy4zNDIgNy4zNDMgNy4zMyA3LjMzIDAgMDA3LjMzOC03LjM0MlY1MC4zNDJhNy4zNDUgNy4zNDUgMCAwMC03LjM0Ni03LjMzN201OS4xOTItMjcuNjAybDUuMTIzLTkuMzU1YTEuMDIzIDEuMDIzIDAgMDAtLjQwMS0xLjM4OCAxLjAyMiAxLjAyMiAwIDAwLTEuMzgyLjQwN2wtNS4xNzUgOS40NTNjLTQuMzU0LTEuOTM4LTkuMjI3LTMuMDI0LTE0LjM4My0zLTAxOS01LjE0Mi0uMDA1LTEwLjAxMyAxLjA3OC0xNC4zNDkgMy4wMDVsLTUuMTgxLTkuNDI5YTEuMDEgMS4wMSAwIDAwLTEuMzc4LS40MDYgMS4wMDcgMS4wMDcgMCAwMC0uNDA0IDEuMzhsNS4xMjUgOS4zNDljLTEwLjA3IDUuMTkzLTE2Ljg3NCAxNS4wODMtMTYuODY4IDI2LjQzOGw2Ni4xMTgtLjAwOGMuMDAzLTExLjM1MS02Ljc4OS0yMS4yMjEtMTYuODQ1LTI2LjQyN000OC45NCAyOS44NmEyLjc3MiAyLjc3MiAwIDAxLjAwMy01LjU0NSAyLjc4IDIuNzggMCAwMTIuNzc1IDIuNzc0IDIuNzc1IDIuNzc1IDAgMDEtMi43NzggMi43NzFtMzAuMTA3LS4wMDZhMi43NyAyLjc3IDAgMDEtMi43NzI2LTIuNzcxIDIuNzkzIDIuNzkzIDAgMDEyLjc3My0yLjc3OCAyLjc5IDIuNzkgMCAwMTIuNzY3IDIuNzc5IDIuNzY3IDIuNzY3IDAgMDEtMi43NjggMi43N00zMS4xOTMgNDQuMzkybC4wMTEgNDcuNjM1YTcuODIyIDcuODIyIDAgMDA3Ljg2MiA3LjgzMWw1LjMzMy4wMDIuMDA2IDE2LjI2NGMtLjAwMSA0LjA1IDMuMjkxIDcuMzQyIDcuMzM1IDcuMzQyIDQuMDU2IDAgNy4zNDItMy4yOTUgNy4zNDMtNy4zNDdsLS4wMDQtMTYuMjYgOS44MDktLjAwMy4wMDQgMTYuMjYzYzAgNC4wNDcgMy4yOTMgNy4zNDYgNy4zMzggNy4zMzggNC4wNTYuMDAzIDcuMzQ0LTMuMjkyIDcuMzQzLTcuNzRscy0uMDA1LTE2LjI1OSA1LjU1Mi0uMDA0YTcuODM1IDcuODM1IDAgMDA3LjgzNi03LjgzNGwtLjAwOS00Ny42MzUtNjUuNjI0LjAxMXptODMuMTM0IDUuOTQzYTcuMzM4IDcuMzM4IDAgMDAtNy4zNDEtNy4zMzljLTQuMDUzLS4wMDQtNy4zMzcgMy4yODctNy4zMzcgNy4zNDJsLjAwNiAzMC43MzhhNy4zMzQgNy4zMzQgMCAwMDcuMzM5IDcuMzM5IDcuMzM3IDcuMzM3IDAgMDA3LjMzOC03LjM0M2wtLjAwNS0zMC43NzR6Ii8+PC9zdmc+"
+                    alt=""
+                  />Android
+                </div>
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBkPSJNOTcuOTA1IDY3Ljg4NWMuMTc0IDE4LjggMTYuNDk0IDI1LjA1NyAxNi42NzQgMjUuMTM3LS4xMzguNDQtMi42MDcgOC45MTYtOC41OTcgMTcuNjY5LTUuMTc4IDcuNTY4LTEwLjU1MyAxNS4xMDgtMTkuMDE4IDE1LjI2Ni04LjMxOC4xNTItMTAuOTkzLTQuOTM0LTIwLjUwNC00Ljk3NC05LjUwOCAwLTEyLjQ3OSA0Ljc3Ni0yMC4zNTQgNS4wODYtOC4xNzIu3EtMTQuMzk1LTguMTg1LTE5LjYxNi0xNS43MjRDMTUuODIyIDk0Ljk2MSA3LjY2OSA2Ni44IDE4LjYxNiA0Ny43OTFjNS40MzgtOS40NCAxNS4xNTgtMTUuNDE3IDI1LjcwNy0xNS41NzEgOC4wMjQtLjE1MyAxNS41OTggNS4zOTggMjAuNTAzIDUuMzk4IDQuOTA2IDAgMTQuMTA2LTYuNjc2IDIzLjc4Mi01LjY5NiA0LjA1MS4xNjkgMTUuNDIxIDEuNjM2IDIyLjcyMiAxMi4zMjQtLjU4Ny4zNjUtMTMuNTY2IDcuOTIxLTEzLjQyNSAyMy42MzlNODIuMjcyIDIxLjcxOWM0LjMzOC01LjI1MSA3LjI1OC0xMi41NjMgNi40NjItMTkuODM2LTYuMjU0LjI1MS0xMy44MTYgNC4xNjctMTguMzAxIDkuNDE2LTQuMDIgNC42NDctNy41NCAxMi4wODctNi41OTEgMTkuMTE2IDYuOTcxLjU0IDE0LjA5MS0zLjU0MiAxOC40My04Ljc5NiIvPjwvc3ZnPg=="
+                    alt=""
+                  />iOS
+                </div>
+              </div>
+            </div>
+
+            <div class="group">
+              <h3>پایگاه داده (Databases) <span>محل ذخیره اطلاعات</span></h3>
+              <div class="chips">
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMDA2MThBIiBkPSJNMTE3LjY4OCA5OC4yNDJjLTYuOTczLS4xOTEtMTIuMjk3LjQ2MS0xNi44NTIgMi4zNzktMS4yOTMuNTQ3LTMuMzU1LjU1OS0zLjU2NiAyLjE4Ljcx1Ljc0Ni44MiAxLjg1OSAxLjM4NyAyLjc3NyAxLjA4NiAxLjc1NCAyLjkyMiA0LjExMyA0LjU1OSA1LjM1MiAxLjc4OSAxLjM0OCAzLjYzMyAyLjc5MyA1LjU1MSAzLjk2MSAzLjE0IDIuMDgyIDcuMjIzIDMuMjcgMTAuNTA0IDUuMzUyIDEuOTM4IDEuMjMgMy44NTkgMi43NzcgNS43NSA0LjE2NC45MzQuNjg0IDEuNTYzIDEuNzUgMi43NzMgMi4xOHYtLjE5NWMtLjYzNy0uODE2LS44MDEtMS45My0xLjM4Ny0yLjc3N2wtMi41NzgtMi41NzhjLTIuNTItMy4zNDQtNS43MTktNi4yODEtOS4xMTctOC43MTktMi43MTEtMS45NDktOC43ODEtNC41NzgtOS45MTAtNy43M2wtLjE5OS0uMTk5YzEuOTIyLS4yMTkgNC4xNzItLjkxNCA1Ljk0OS0xLjM5MSAyLjk4LS43OTcgNS42NDUtLjU5IDguNzE5LTEuMzg3bDQuMTY0LTEuMTg3di0uNzkzYy0xLjU1NS0xLjU5NC0yLjY2NC0zLjcwNy00LjM1OS01LjE1Mi00LjQ0MS0zLjc4MS05LjI4NS03LjU1NS0xNC4yNzMtMTAuNzAzLTIuNzY2LTEuNzQ2LTYuMTg0LTIuODgzLTkuMTE3LTQuMzYzLS45ODgtLjQ5Ni0yLjc1OS0uNzU4LTMuMzcxLTEuNTg2LTEuNTM5LTEuOTYxLTIuMzc5LTQuNDQ5LTMuNTY2LTYuNzM4LTIuNDg4LTQuNzk3LTQuOTMtMTAuMDIzLTcuMTM3LTE1LjA2Ni0xLjUwNC0zLjQzNy0yLjQ4NC02LjgyOC00LjM1OS05LjkxLTktMTQuNzk3LTE4LjY4Ny0yMy43My0zMy42OTUtMzIuNTA4LTMuMTk1LTEuODY3LTcuMDM5LTIuNjA1LTExLjEwMi0zLjU3bC02LjU0My0uMzk1Yy0xLjMzMi0uNTU1LTIuNzE1LTIu1ODQtMy45NjUtMi45NzdDMTYuOTc3IDMuNTIgNC4yMjMtMy4zMTIuNTM5IDUuNjcyLTEuNzg1IDExLjM0IDQuMDE2IDE2Ljg3MSA2LjA5IDE5Ljc0NmMxLjQ1NyAyLjAxMiAzLjMyIDQuMjczIDQuMzU5IDYuNTM5LjY4OCAxLjQ5Mi44MDUgMi45ODQgMS4zOTEgNC41NTkgMS40MzggMy44ODMgMi42OTUgOC4xMDkgNC41NTkgMTEuNjk1Ljk0MSAxLjgxNiAxLjk4IDMuNzI3IDMuMTcyIDUuMzUyLjcyNy45OTYgMS45OCAxLjQzOCAyLjE4IDIuOTczLTEuMjI3IDEuNzE1LTEuMjk3IDQuMzc1LTEuODg0IDYuNTQzLTMuMDk4IDkuNzctMS45MjYgMjEuOTEgMi41NzggMjkuMTM3IDEuMzgzIDIuMjIzIDQuNjQxIDYuOTggOS4xMTcgNS4xNTYgMy45MTgtMS41OTggMy4wNDMtNi41MzkgNC4xNjQtMTAuOTAyLjI1NC0uOTg4LjA5OC0xLjcxNS41OTQtMi4zNzl2LjE5OWwzLjU3IDcuMTMzYzIuNjQxIDQuMjU0IDcuMzI0IDguNjk5IDExLjI5NyAxMS42OTkgMi4wNTkgMS41NTUgMy42OCA0LjI0MiA2LjM0NCA1LjE1MnYtLjE5OWgtLjE5OWMtLjUxNi0uODA1LTEuMzI0LTEuMTM3LTEuOTgtMS43ODEtMS41NTEtMS41MjMtMy4yNzctMy40MTQtNC41NTktNS4xNTYtMy42MTMtNC45MDItNi44MDUtMTAuMjctOS43MTEtMTUuODU1LTEuMzkxLTIuNjY4LTIuNTk4LTUuNjA5LTMuNzctOC4zMjQtLjQ1My0xLjA0Ny0uNDQ1LTIuNjMzLTEuMzg3LTMuMTcyLTEuMjgxIDEuOTg4LTMuMTcyIDMuNTk4LTQuMTY0IDUuOTQ1LTEuNTgyIDMuNzU0LTEuNzg5IDguMzM2LTIuMzc1IDEzLjA4Mi0uMzQ4LjEyNS0uMTk1LjAzOS0uMzk4LjE5OS0yLjc2Mi0uNjY4LTMuNzMtMy41MDgtNC43NTgtNS45NDktMi41OTQtNi4xNjQtMy4wNzgtMTYuMDktLjc5My0yMy4xOTEuNTktMS44MzYgMy4yNjItNy42MTcgMi4xOC05LjMxNi0uNTE2LTEuNjkxLTIuMjE5LTIuNjcyLTMuMTcyLTMuOTY1LTEuMTgtMS41OTgtMi4zNTUtMy43MDMtMy4xNzItNS41NTEtMi4xMjUtNC44MDUtMy4xMTMtMTAuMjAzLTUuMzUyLTE1LjA2Mi0xLjA3LTIuMzI0LTIuODc1LTQuNjc2LTQuMzU5LTYuNzM4LTEuNjQ1LTIuMjg5LTMuNDg0LTMuOTc3LTQuNzU4LTYuNzQyLS40NTMtLjk4NC0xLjA2Ni0yLjU1OS0uMzk4LTMuNTY2LjIxNS0uNjg0LjUxNi0uOTY5IDEuMTkxLTEuMTkxIDEuMTQ4LS44ODcgNC4zNTIuMjk3IDUuNTQ3Ljc5MyAzLjE4IDEuMzIgNS44MzIgMi41NzggOC41MjcgNC4zNjMgMS4yODkuODU1IDIuNTk4IDIuNTEyIDQuMTYgMi45NzNoMS43ODVjMi43ODkuNjQxIDUuOTE0LjE5NSA4LjUyMy5sODggNC42MDkgMS40MDIgOC43MzggMy41ODIgMTIuNDggOCA1Ljk0OSAxMS40MjIgNy4yMTUgMjAuNzY2IDE3LjQ4IDI3LjE1NiAyOS43MzQgMS4wMjcgMS45NzMgMS40NzMgMy44NTIgMi4zNzkgNS45NDUgMS44MjQgNC4yMTkgNC4xMjUgOC41NTkgNS45NDEgMTIuNjg4IDEuODE2IDQuMTE3IDMuNTgyIDguMjcgNi4xNDggMTEuNjk1IDEuMzQ4IDEuODAxIDYuNTUxIDIuNzY2IDguOTE4IDMuNzY2IDEuNjYuNjk5IDQuMzc5IDEuNDMgNS45NDkgMi4zNzkgMyAxLjgwOSA1LjkwNiAzLjk2NSA4LjcyMyA1Ljk0NSAxLjQwMi45OTIgNS43MyAzLjE2OCA1Ljk0NSA0Ljk1N3oiLz48L3N2Zz4="
+                    alt=""
+                  />MySQL
+                </div>
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMzM2NzkxIiBkPSJNMTE1LjczMSA3Ny40NGMtMTMuOTI1IDIuODczLTE0Ljg4Mi0xLjg0Mi0xNC44ODItMS44NDIgMTQuNzAzLTIxLjgxNiAyMC44NDktNDkuNTEgMTUuNTQ1LTU2LjI4N0MxMDEuOTI0Ljgy3A0Ni44NzUgOS41NjYgNzYuNDU3IDkuNzkzbC0uMTM1LjAyNGMtMi43NTEtLjU3MS01LgztLjkxMS05LjI5MS0uOTY3LTYuMzAxLS4xMDMtMTEu0OCAxLjY1Mi0xNC43MDcgNC40MDIgMCAwLTQ0LjY4NC0xOC40MDgtNDIuNjA2IDI3LjE1MS40NDIgOC44NDIgMTIuNjcyIDY2Ljg5OSAyNy4yNiA0OS4zNzggNS4zMzItNi40MTIgMTAuNDgzLTExLjg3NCAxMC40ODMtMTEuODc0IDIuNTU5IDEuNjk5IDUuNjIyIDIuNTY3IDgugzMyAyLjI1NWwuMjUtLjIxMmMtLjA3OC43OTYtLjA0MiAxLjU3NS4xIDIuNDk3LTMuNzU4IDQuMTk5LTIuNjU0IDQuOTM2LTEwLjE2NyA2LjQ4Mi03LjYwMiAxLjU2Ni0zLjEzNiA0LjM1NS0uMjIgNS4wODQgMy41MzQuODg0IDExLjcxMiAyLjEzNiAxNy4yMzctNS41OThsLS4yMjEuODgyYzEuNDczIDEuMTggMi41MDcgNy42NzIgMi4zMzQgMTMuNTU3LS4xNzQgNS44ODUtLjI5IDkuODI2Ljg3MSAxMy4wODIgMS4xNiAzLjE1NiAyLjMxNiAxMC4yNTYgMTIuMTkyIDguI004LjI1Mi0xLjc2OCAxMi41MjgtNi4zNTEgMTMuMTI0LTEzLjk5NS40MjItNS40MzUgMS4zNzctNC42MzEgMS40MzgtOS40OWwuNzY3LTIuM2MuODg0LTcuMzY3LjE0LTkuNzQzIDUuMjI1LTguNjM4MS4yMzUuMTA4YzMuNzQyLjE3IDguNjM5LS42MDIgMTEuNTE0LTEuOTM4IDYuMTktMi44NzEgOS44NjEtNy42NjcgMy43NTgtNi40MDh6Ii8+PC9zdmc+"
+                    alt=""
+                  />PostgreSQL
+                </div>
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTI4IDEyOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNOTkuNSA5OS4xNzZjLS4wNTktLjczLS4wOTQtMS4yLS4wOTQtMS4yUzY3LjIgODMuMDg3IDY0LjU3IDc4LjY0MmMtLjQxNC0uNzA3LjA0My0zLjU5NCAxLjIwNy03Ljg4LjY4IDEuMTY5IDMuNTQgNi4xOTIgNC4xMTggNy44MS42NDggMS44MjQuNzggMi4zNDcuNzggMi4zNDdzLTEuNTctOC4wODItNC4xNDQtMTIuNzk3YTE2Mi4yODYgMTYyLjI4NiAwIDAxMi4wMDQtNi4yNjVjLjk3MyAxLjcxIDMuMzEzIDUuODU5IDMuODI4IDcuM3AuMTAyLjI5My4xOTIuNTQzLjI3Ljc3NC4wMjMtLjEzNy4wNS0uMjc0LjA3NC0uMTQ0LS41OS0yLjA0LTEuNzUtNi44Ni0zLjMzNi0xMC4wODIgMy41Mi0xOC4zMjggMTUuNTMxLTQyLjgyNCAyNy44NC01My43NTRIMTYuOWMtNS4zODcgMC05Ljc4OSA0LjQwNi05Ljc4OSA5Ljc4OXY4OC41N2MwIDUuMzgzIDQuNDA2IDkuNzg5IDkuNzkgOS43ODloNTIuODk3YTExOC42NTcgMTE4LjY1NyAwIDAxLS4yOTctMTQuNjUyIiBmaWxsPSIjMGI3ZmNjIi8+PC9zdmc+"
+                    alt=""
+                  />SQLite
+                </div>
+              </div>
+            </div>
+
+            <div class="group" style="grid-column: 1/-1">
+              <h3>ابزارها <span>طراحی و کنترل سورس‌کد</span></h3>
+              <div class="chips">
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjRjM0RjI5IiBkPSJNMTI0LjczNyA1OC4zNzhMNjkuNjIxIDMuMjY0Yy0zLjE3Mi0zLjE3NC04LjMyLTMuMTc4LTExLjQ5NyAwTDQ2LjY4IDE0LjcxbDE0LjUxOCAxNC41MThjMy4zNzUtMS4xMzkgNy4yNDMtLjM3NSA5LjkzMiAyLjE0IDIuNzAzIDIuNzA2IDMuNDYxIDYuNjA3IDIuMjk0IDkuOTkzIDE3Ljk5MiAxMy45OTNjMy4zODUtMS4xNjcgNy4yOTItLjQxMyA5Ljk5NCAyLjI5NSAzLjc4IDMuNzc3IDMuNzggOS45IDAgMTMuNjc5YTkuNjczIDkuNzczIDAgMDEtMTMuNjgzIDAgOS42NzcgOS42NzcgMCAwMS0yLjEwNS0xMC41MjFMNjguNTc0IDQ3LjkzM2wtLjAwMiAzNC4zNDFhOS43MDggOS43MDggMCAwMTIuNTU5IDEuODI4YzMuNzc4IDMuNzc3IDMuNzc4IDkuODk4IDAgMTMuNhgzLTMuNzc5IDMuNzc3LTkuOTA0IDMuNzc3LTEzLjY3OSAwLTMuNzc4LTMuNzg0LTMuNzg0LTkuOTA1IDAtMTMuNhgzYTkuNjUgOS42NSAwIDAxMy4xNjctMi4xMVY0Ny4zMzNhOS41ODEgOS41ODEgMCAwMS0zLjE2Ny0yLjExMmMtMi44NjItMi44Ni0zLjU1MS03LjA2LTIuMDgzLTEwLjU3NkM0MS4wNTYgMjAuMzMzIDMuMjY0IDU4LjEyM2E4LjEzMyA4LjEzMyAwIDAwMCAxMS41bDU1LjExNyA1NS4xMTRjMy4xNzQgMy4xNzQgOC4zMiAzLjE3NCAxMS40OTkgMGw1NC44NTgtNTQuODU4YTguMTM1IDguMTM1IDAgMDAtLjAwMS0xMS41MDF6Ii8+PC9zdmc+"
+                    alt=""
+                  />Git
+                </div>
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48ZyBmaWxsPSIjMTgxNjE2Ij48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTY0IDUuMTAzYy0zMy4zNDcgMC02MC4zODggMjcuMDM1LTYwLjM4OCc2MC4zODggMCAyNi42ODIgMTcuMzAzIDQ5LjMxNyA0MS4yOTcgNTcuMzAzIDMuMDE3LjU2IDQuMTI1LTEuMzEgNC4xMjUtMi45MDUgMC0xLjQ0LS4wNTYtNi4xOTctLjA4Mi0xMS4yNDMtMTYuOCAzLjY1My0yMC4zNDUtNy4xMjUtMjA.MzQ1LTcuMTI1LTIuNzQ3LTYuOTgtNi43MDUtOC44MzYtNi43MDUtOC44MzYtNS40OC0zLjc0OC40MTMtMy42Ny40MTMtMy42NyA2LjA2My40MjUgOS4yNTcgNi4yMjMgOS4yNTcgNi4yMjMgNS4zODYgOS4yMyAxNC4xMjcgNi41NjIgMTcuNTczIDUuMDIuNTQyLTMuOTAzIDIuMTA3LTYuNTY4IDMuOC04LjA3Ni0xMy40MTMtMS41MjUtMjcuNTE0LTYuNzA4LTI3LjUxNC0yOS44NDMgMC02LjU5MyAyLjM2LTExLjk4IDYuMjIzLTE2LjIxLS42MjgtMS41Mi0yLjY5NS03LjY2Mi41ODQtMTUuOTggMCAwIDUuMDctMS42MjMgMTYuNjEgNi4xOUM1My43IDM1IDU4Ljg2NyAzNC4zMjcgNjQgMzQuMzA0YzUuMTMuMDIzIDEwLjMuNjk0IDE1LjEyNyAyLjAzMyAxMS41MjYtNy44MTMgMTYuNTktNi4xOSAxNi41OS02LjE5IDMuMjg3IDguMzE3IDEuMjIgMTQuNDYuNTkzIDE1Ljk4IDMuODcyIDQuMjMgNi4yMTUgOS42MTcgNi4yMTUgMTYuMjEgMCAyMy4xOTQtMTQuMTI3IDI4LjMtMjcuNTc0IDI5Ljc5NiAyLjE2NyAxLjg3NCA0LjA5NyA1LjU1IDQuMDk3IDExLjE4MyAwIDguMDgtLjA3IDE0Ljd4My0uMDcgMTYuNTcyIDAgMS42MDcgMS4wODggMy40OSA0LjE0OCAyLjg5NyAyMy45OC03Ljk5NCA0MS4yNjMtMzAuNjIyIDQxLjI2My01Ny4yOTRDMTI0LjM4OCAzMi4xNDkgOTcu3NSA1LjE0IDY0IDUuMTA0eiIvPjwvZz48L3N2Zz4="
+                    alt=""
+                  />GitHub
+                </div>
+                <div class="chip">
+                  <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cGF0aCBmaWxsPSIjMGFjZjgzIiBkPSJNNDUuNSAxMjljMTEuOSAwIDIxLjUtOS42IDIxLjUtMjEuNVY4Nkg0NS41QzMzLjYgODYgMjQgOTUuNiAyNCAxMDcuNVMzMy42IDEyOSA0NS41IDEyO3ptMCAwIi8+PHBhdGggZmlsbD0iI2EyNTlmZiIgZD0iTTI0IDY0LjVDMjQgNTIuNiAzMy42IDQzIDQ1LjUgNDNINjd2NDNINDUuNUMzMy42IDg2IDI0IDc2LjQgMjQgNjQuNXptMCAwIi8+PHBhdGggZmlsbD0iI2YyNGUxZSIgZD0iTTI0IDIxLjVDMjQgOS42IDMzLjYgMCA0NS41IDBINjd2NDNINDUuNUMzMy42IDQzIDI0IDMzLjQgMjQgMjEuNXptMCAwIi8+PHBhdGggZmlsbD0iI2ZmNzI2MiIgZD0iTTY3IDBoMjEuNUMxMDAuNCAwIDExMCA5LjYgMTEwIDIxLjVTMTAwLjQgNDMgODguNSA0M0g2N3ptMCAwIi8+PHBhdGggZmlsbD0iIzFhYmNmZSIgZD0iTTExMCA2NC41YzAgMTEuOS05LjYgMjEuNS0yMS41IDIxLjVTNjc3Ni40IDY3IDY0LjUgNzYuNCA0MyA4OC41IDQzIDExMCA1Mi42IDExMCA2NC41em0wIDAiLz48L3N2Zz4="
+                    alt=""
+                  />Figma
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section id="process">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2>مسیر و نحوه همکاری ما</h2>
+            <p>
+              فرآیندی شفاف و گام‌به‌گام با گزارش‌دهی منظم، تا در هر مرحله دقیقا
+              از پیشرفت پروژه مطلع باشید.
+            </p>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <h3>۱. نیازسنجی و تحلیل</h3>
+              <p>
+                بررسی کامل اهداف، مخاطبان، امکانات مورد نیاز و بودجه؛ سپس توافق
+                روی زمان‌بندی شفاف.
+              </p>
+            </div>
+            <div class="step">
+              <h3>۲. طراحی رابط کاربری (UI/UX)</h3>
+              <p>
+                طراحی اولیه و موکاپ صفحات برای بررسی و تایید شما، قبل از شروع
+                مرحله کدنویسی.
+              </p>
+            </div>
+            <div class="step">
+              <h3>۳. کدنویسی و توسعه</h3>
+              <p>
+                توسعه فرانت‌اند، بک‌اند و دیتابیس در فازهای مشخص قابل مشاهده
+                برای شما.
+              </p>
+            </div>
+            <div class="step">
+              <h3>۴. تست و بهینه‌سازی</h3>
+              <p>
+                تست روی مرورگرها و دستگاه‌های مختلف، رفع تمام خطاها و بهینه‌سازی
+                سرعت و سئو.
+              </p>
+            </div>
+            <div class="step">
+              <h3>۵. تحویل و پشتیبانی</h3>
+              <p>
+                راه‌اندازی کامل روی سرور شما و ارائه پشتیبانی واقعی برای رفع
+                مشکلات احتمالی.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section id="work" class="work">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2>نمونه پروژه‌های منتخب</h2>
+            <p>
+              بخشی از پروژه‌های واقعی طراحی سایت، وب‌اپلیکیشن و اپلیکیشن موبایل.
+            </p>
+          </div>
+          <div class="projects">
+            <article class="proj">
+              <div class="shot">تصویر پیش‌نمایش فروشگاه آنلاین</div>
+              <div class="body">
+                <h3>فروشگاه اینترنتی پیشرفته</h3>
+                <p>
+                  فروشگاه آنلاین با کاتالوگ محصولات، سبد خرید هوشمند، اتصال به
+                  درگاه مستقیم و پنل اختصاصی مدیریت سفارشات.
+                </p>
+                <div class="tags">
+                  <span>Next.js</span><span>Django</span><span>MySQL</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj">
+              <div class="shot">تصویر پیش‌نمایش داشبورد SaaS</div>
+              <div class="body">
+                <h3>سامانه مدیریتی و داشبورد تحلیل</h3>
+                <p>
+                  پنل آنالیز داده با دسترسی‌های سطح‌بندی شده کاربران، نمودارهای
+                  زنده و وب‌سرویس سریع.
+                </p>
+                <div class="tags">
+                  <span>React</span><span>Python</span><span>REST API</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj">
+              <div class="shot">تصویر پیش‌نمایش اپلیکیشن موبایل</div>
+              <div class="body">
+                <h3>اپلیکیشن کاربردی موبایل</h3>
+                <p>
+                  اپلیکیشن دو زبانه iOS و Android با سیستم احراز هویت پیشرفته و
+                  ارسال نوتیفیکیشن.
+                </p>
+                <div class="tags">
+                  <span>React Native</span><span>Django</span
+                  ><span>SQLite</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY -->
+      <section>
+        <div class="wrap why">
+          <div class="sec-head" style="margin: 0">
+            <h2>چرا کارفرمایان من را انتخاب می‌کنند؟</h2>
+            <p>
+              تلفیق دانش فنی، درک نیاز بازار و تعهد کاری باعث می‌شود پروژه‌تان
+              بدون دغدغه، دقیقاً مطابق برنامه و با بالاترین کیفیت ممکن اجرا شود.
+            </p>
+          </div>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10" /></svg>
+              <div>
+                <h3>طراحی مدرن و کاربرپسند</h3>
+                <p>
+                  رابط‌های کاربری کاملاً حرفه‌ای و ساده که تجریه کاربری عالی
+                  برای مشتریان شما می‌سازند.
+                </p>
+              </div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10" /></svg>
+              <div>
+                <h3>تعهد بالا و تحویل به‌موقع</h3>
+                <p>
+                  تعیین زمان‌بندی دقیق و تحویل پروژه دقیقاً در موعد مقرر، بدون
+                  بهانه‌های متداول.
+                </p>
+              </div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10" /></svg>
+              <div>
+                <h3>کدنویسی استاندارد و تمیز</h3>
+                <p>
+                  ساختار کاملاً منظم و مستندسازی شده که قابلیت توسعه در آینده را
+                  حفظ می‌کند.
+                </p>
+              </div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10" /></svg>
+              <div>
+                <h3>پشتیبانی واقعی بعد از تحویل</h3>
+                <p>
+                  همراهی شما پس از تحویل پروژه جهت آموزش، رفع ایرادات احتمالی و
+                  پاسخ به سوالات.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="contact">
+        <div class="wrap">
+          <div class="box">
+            <div>
+              <h2>
+                به یک طراح و برنامه‌نویس حرفه‌ای برای پروژه‌تان نیاز دارید؟
+              </h2>
+              <p>
+                ایده، نیازها، زمان‌بندی مدنظر و حدود بودجه خود را بفرستید. من پس
+                از بررسی، طرح پیشنهادی و برآورد دقیق را برای شما ارسال می‌کنم.
+              </p>
+              <a class="btn btn-solid" href="mailto:mohaymenalizadeh@gmail.com"
+                >ارسال ایمیل به من</a
+              >
+            </div>
+            <div class="list">
+              <a href="mailto:mohaymenalizadeh@gmail.com"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8L4.500 7.500v1.200L12 14l7.500-5.300V7.500L12 13Z"
+                  /></svg
+                ><span
+                  ><small>ایمیل مستقیم</small
+                  ><b>mohaymenalizadeh@gmail.com</b></span
+                ></a
+              >
+              <a href="https://t.me/mohaymne" target="_blank" rel="noopener"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M21.500 3.500 2.700 10.800c-.8.300-.8 1.400 0 1.700l4.700 1.500 1.800 5.600c.2.600 1 .8 1.400.3l2.600-2.500 4.800 3.500c.6.400 1.400.1 1.500-.6l3-15.800c.2-.8-.6-1.500-1.400-1Zm-3.200 4L9.500 15l-.4 3-1.300-4.200 10.500-6.300Z"
+                  /></svg
+                ><span><small>تلگرام</small><b>@mohaymne</b></span></a
+              >
+              <a
+                href="https://www.linkedin.com/in/mohaymen-alizadeh"
+                target="_blank"
+                rel="noopener"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M4.500 3A2 2 0 1 0 4.500 7a2 2 0 0 0 0-4ZM3 9h3v12H3V9Zm6 0h2.900v1.700h.1c.5-.9 1.600-1.900 3.300-1.900 3.500 0 4.200 2.300 4.200 5.300V21h-3v-6.200c0-1.500 0-3.300-2-3.300s-2.400 1.600-2.400 3.200V21H9V9Z"
+                  /></svg
+                ><span><small>لینکدین</small><b>Mohaymen Alizadeh</b></span></a
+              >
+              <a href="tel:۰۹۱۱۵۲۹۹۷۳۹"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M6.600 10.800a15 15 0 0 0 6.600 6.600l2.200-2.200a1 1 0 0 1 1-.25 11 11 0 0 0 3.600.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.500a1 1 0 0 1 1 1c0 1.250.2 2.450.6 3.600a1 1 0 0 1-.25 1Z"
+                  /></svg
+                ><span
+                  ><small>شماره تماس</small><b>۰۹۱۱۵۲۹۹۷۳۹</b></span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <span>© ۲۰۲۶ مهیمن علیزاده. تمامی حقوق محفوظ است.</span>
+        <span
+          >برنامه‌نویس ارشد وب · طراح وب‌سایت · توسعه‌دهنده اپلیکیشن
+          موبایل</span
+        >
+      </div>
+    </footer>
+
+    <!-- اسکریپت اسلایدر نظرات -->
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      const totalSlides = slides.length;
+      const wrapper = document.getElementById("sliderWrapper");
+      const dotsContainer = document.getElementById("dotsContainer");
+
+      // ساخت نقطه (Dot) به ازای هر اسلاید
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement("div");
+        dot.classList.add("dot");
+        if (i === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      }
+
+      const dots = document.querySelectorAll(".dot");
+
+      function updateSlider() {
+        wrapper.style.transform = `translateX(${currentSlide * 100}%)`;
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentSlide);
+        });
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+      }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        updateSlider();
+      }
+
+      // تغییر خودکار اسلاید هر ۶ ثانیه
+      setInterval(nextSlide, 6000);
+    </script>
+  </body>
+</html>
